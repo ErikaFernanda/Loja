@@ -1,10 +1,10 @@
-#include "frame.h"
+#include "MainLoja.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  Frame w;
+  MainLoja w;
   w.show();
 
   return a.exec();

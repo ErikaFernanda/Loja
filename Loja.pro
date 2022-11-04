@@ -13,20 +13,29 @@ TEMPLATE = app
 
 
 SOURCES +=main.cpp\
-    frame.cpp \
-    notepad.cpp
+    MainLoja.cpp \
+    incluircd.cpp \
+    incluirdvd.cpp \
+    incluirlivro.cpp
+#    notepad.cpp
 #    loja-main.cpp \
-#    loja.cpp
+ #    loja.cpp
 
 HEADERS  += \
-    frame.h \
-    notepad.h\
+    MainLoja.h \
+#    notepad.h\
+    incluircd.h \
+    incluirdvd.h \
+    incluirlivro.h \
     loja.h
 
 FORMS    += \
-    frame.ui \
-    notepad.ui\
-#    frame_main.ui
+    MainLoja.ui \
+#    notepad.ui\
+ \#    MainLoja_main.ui
+    incluircd.ui \
+    incluirdvd.ui \
+    incluirlivro.ui
 
 DISTFILES += \
     Loja.cbp \

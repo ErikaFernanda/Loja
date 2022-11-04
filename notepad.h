@@ -15,12 +15,12 @@ public:
   explicit Notepad(QWidget *parent = 0);
   ~Notepad();
 
-private slots:
-  void on_quitButton_clicked();
+//private slots:
+//  void on_quitButton_clicked();
 
-  void on_actionOpen_triggered();
+//  void on_actionOpen_triggered();
 
-  void on_actionSave_triggered();
+//  void on_actionSave_triggered();
 
 private:
   Ui::Notepad *ui;
