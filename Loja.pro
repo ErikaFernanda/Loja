@@ -12,17 +12,21 @@ TARGET = Loja
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    loja-main.cpp \
-    loja.cpp \
-    loja_incompleto.cpp
+SOURCES +=main.cpp\
+    frame.cpp \
+    notepad.cpp
+#    loja-main.cpp \
+#    loja.cpp
 
-HEADERS  += mainwindow.h \
-    loja.h \
-    loja_incompleto.h
+HEADERS  += \
+    frame.h \
+    notepad.h\
+    loja.h
 
-FORMS    += mainwindow.ui
+FORMS    += \
+    frame.ui \
+    notepad.ui\
+#    frame_main.ui
 
 DISTFILES += \
     Loja.cbp \
