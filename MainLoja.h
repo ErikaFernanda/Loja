@@ -15,6 +15,16 @@ public:
   explicit MainLoja(QWidget *parent = 0);
   ~MainLoja();
 
+private slots:
+  void on_tableWidget_3_cellDoubleClicked(int row, int column);
+
+
+  void on_actionSair_triggered();
+
+  void on_actionLer_triggered();
+
+  void on_actionIncluir_Livro_triggered();
+
 private:
   Ui::MainLoja *ui;
 };

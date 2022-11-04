@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 8.0.2, 2022-11-03T23:18:17. -->
+<!-- Written by QtCreator 8.0.2, 2022-11-04T16:53:24. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -59,6 +59,14 @@
  <data>
   <variable>ProjectExplorer.Project.PluginSettings</variable>
   <valuemap type="QVariantMap">
+   <valuemap type="QVariantMap" key="AutoTest.ActiveFrameworks">
+    <value type="bool" key="AutoTest.Framework.Boost">true</value>
+    <value type="bool" key="AutoTest.Framework.CTest">false</value>
+    <value type="bool" key="AutoTest.Framework.Catch">true</value>
+    <value type="bool" key="AutoTest.Framework.GTest">true</value>
+    <value type="bool" key="AutoTest.Framework.QtQuickTest">true</value>
+    <value type="bool" key="AutoTest.Framework.QtTest">true</value>
+   </valuemap>
    <valuemap type="QVariantMap" key="AutoTest.ActiveMainLojaworks">
     <value type="bool" key="AutoTest.MainLojawork.Boost">true</value>
     <value type="bool" key="AutoTest.MainLojawork.CTest">false</value>

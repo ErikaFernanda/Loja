@@ -16,10 +16,10 @@ SOURCES +=main.cpp\
     MainLoja.cpp \
     incluircd.cpp \
     incluirdvd.cpp \
-    incluirlivro.cpp
+    incluirlivro.cpp\
 #    notepad.cpp
 #    loja-main.cpp \
- #    loja.cpp
+     loja.cpp
 
 HEADERS  += \
     MainLoja.h \

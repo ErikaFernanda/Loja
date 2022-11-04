@@ -194,7 +194,7 @@
       <x>11</x>
       <y>552</y>
       <width>101</width>
-      <height>14</height>
+      <height>18</height>
      </rect>
     </property>
     <property name="layoutDirection">
@@ -239,7 +239,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>17</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArquivo">
