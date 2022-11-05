@@ -1,4 +1,5 @@
 #include "incluirlivro.h"
+#include "qmessagebox.h"
 #include "ui_incluirlivro.h"
 
 IncluirLivro::IncluirLivro(QWidget *parent) :
@@ -24,6 +25,13 @@ void IncluirLivro::on_buttonBox_accepted()
     QString nome = ui->input_livro_autor->text();
     QString preco = ui->input_livro_preco->text();
     QString autor = ui->input_livro_autor->text();
+    if(preco.toFloat() <= 0.0 || nome.isEmpty() || autor.isEmpty()){
+        const QString csMsg("Não foi possivel incluir o livro:\nNome=" + nome + "\n" + "Preço=" + preco +"\n" + "Autor=" + autor);
+        const QString csTitle("Livro Inválido");
+        QMessageBox msgBox;
+        msgBox.critical(nullptr, csTitle, csMsg);
+        return;
+    }
 
     emit signIncluirLivro(nome,preco,autor);
 }
