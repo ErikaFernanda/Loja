@@ -1,8 +1,0 @@
-LISTALIVRO 1
-L: "ewrwerwe";$3224.23;"ewrwerwe"
-LISTACD 2
-C: "Solidao";$27.86;12
-C: "Verso Azul";$8.52;14
-LISTADVD 2
-D: "Combate VI";$14.38;126
-D: "Nunca Mais!";$11.00;185
