@@ -1,6 +1,7 @@
 #ifndef INCLUIRLIVRO_H
 #define INCLUIRLIVRO_H
 
+#include "loja.h"
 #include <QDialog>
 
 namespace Ui {
@@ -14,6 +15,13 @@ class IncluirLivro : public QDialog
 public:
     explicit IncluirLivro(QWidget *parent = nullptr);
     ~IncluirLivro();
+    void clear();
+
+signals:
+    void signIncluirLivro(QString nome, QString preco, QString autor);
+
+private slots:
+    void on_buttonBox_accepted();
 
 private:
     Ui::IncluirLivro *ui;
