@@ -20,7 +20,10 @@ public:
   explicit MainLoja(QWidget *parent = 0);
   ~MainLoja();
    void preencher_Livros();
-
+   void preencher_CDS();
+   void preencher_DVDS();
+   void preencher_Listas();
+   void update_n_itens();
 private slots:
 
   void on_actionSair_triggered();
@@ -36,10 +39,14 @@ private slots:
   void on_actionIncluir_DVD_triggered();
 
   void slotIncluirLivro(QString nome, QString preco, QString autor);
-//  void slotIncluirCD(QString nome, QString preco, QString numfaixas);
-//  void slotIncluirDVD(QString nome, QString preco, QString duracao);
+  void slotIncluirCD(QString nome, QString preco, QString nfaixas);
+  void slotIncluirDVD(QString nome, QString preco, QString duracao);
 
   void on_table_livros_cellDoubleClicked(int row, int column);
+
+  void on_table_dvds_cellDoubleClicked(int row, int column);
+
+  void on_table_cds_cellDoubleClicked(int row, int column);
 
 private:
   Ui::MainLoja *ui;

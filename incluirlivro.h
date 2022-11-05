@@ -1,7 +1,6 @@
 #ifndef INCLUIRLIVRO_H
 #define INCLUIRLIVRO_H
 
-#include "loja.h"
 #include <QDialog>
 
 namespace Ui {
