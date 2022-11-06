@@ -42,7 +42,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>20</y>
+     <y>10</y>
      <width>281</width>
      <height>20</height>
     </rect>
@@ -65,7 +65,7 @@
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <property name="horizontalSpacing">
-     <number>60</number>
+     <number>30</number>
     </property>
     <property name="verticalSpacing">
      <number>0</number>

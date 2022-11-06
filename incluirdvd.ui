@@ -36,7 +36,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>20</y>
+     <y>10</y>
      <width>261</width>
      <height>20</height>
     </rect>
@@ -62,7 +62,7 @@
      <number>0</number>
     </property>
     <property name="horizontalSpacing">
-     <number>50</number>
+     <number>30</number>
     </property>
     <property name="verticalSpacing">
      <number>0</number>
