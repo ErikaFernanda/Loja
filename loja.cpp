@@ -9,7 +9,7 @@
 using namespace std;
 
 /// Construtor
-Produto::Produto(const string& N, int P): nome(N), preco(P) {}
+Produto::Produto(const string &N, int P) : nome(N), preco(P) {}
 
 /// Funcoes de consulta
 string Produto::getNome() const
@@ -21,7 +21,7 @@ double Produto::getPreco() const
 {
   // ATENCAO: return preco/100; dah errado, pois faz a divisao inteira e soh
   // depois converte para double ao retornar, o que faz perder a parte fracionaria
-  return preco/100.0;
+  return preco / 100.0;
 }
 
 /// Funcoes de entrada/saida
@@ -31,19 +31,17 @@ void Produto::digitar()
   do
   {
     cout << "Nome: ";
-    getline(cin,nome);
-  }
-  while (nome=="");
+    getline(cin, nome);
+  } while (nome == "");
   // Leh o preco do produto
   double Pr;
   do
   {
     cout << "Preco (##.##): ";
     cin >> Pr;
-  }
-  while (Pr <= 0.0);
+  } while (Pr <= 0.0);
   cin.ignore();
-  preco = (int)round(100.0*Pr);
+  preco = (int)round(100.0 * Pr);
 }
 
 /// Define a funcao imprimir como sendo salvar em cout
@@ -52,24 +50,26 @@ void Produto::imprimir() const
   salvar(cout);
 }
 
-bool Produto::ler(istream& I)
+bool Produto::ler(istream &I)
 {
   // Formato da linha no arquivo-> "STRING_NOME";$FLOAT_PRECO
   try
   {
     // Ignora ateh aspa inicial
-    I.ignore(numeric_limits<streamsize>::max(),'"');
+    I.ignore(numeric_limits<streamsize>::max(), '"');
     // Leh ateh a aspa final do nome do produto
-    getline(I,nome,'"');
-    if (!I.good() || nome=="") throw 1;
+    getline(I, nome, '"');
+    if (!I.good() || nome == "")
+      throw 1;
     // Ignora o ";" e o "$"
-    I.ignore(numeric_limits<streamsize>::max(),'$');
+    I.ignore(numeric_limits<streamsize>::max(), '$');
     // Leh o preco como numero real
     double Pr;
     I >> Pr;
-    if (!I.good() || Pr<=0.0) throw 2;
+    if (!I.good() || Pr <= 0.0)
+      throw 2;
     // Converte o preco para centavos (inteiro)
-    preco = (int)round(100.0*Pr);
+    preco = (int)round(100.0 * Pr);
   }
   catch (int i)
   {
@@ -81,19 +81,19 @@ bool Produto::ler(istream& I)
   return true;
 }
 
-void Produto::salvar(ostream& O) const
+void Produto::salvar(ostream &O) const
 {
   // Formato da linha-> "STRING_NOME";$FLOAT_PRECO;
-  O << '"' << nome << '"' << ";$" << fixed << setprecision(2) << double(preco)/100.0;
+  O << '"' << nome << '"' << ";$" << fixed << setprecision(2) << double(preco) / 100.0;
 }
 
-istream& operator>>(istream& I, Produto& P)
+istream &operator>>(istream &I, Produto &P)
 {
   P.digitar();
   return I;
 }
 
-ostream& operator<<(ostream& O, const Produto& P)
+ostream &operator<<(ostream &O, const Produto &P)
 {
   P.salvar(O);
   return O;
@@ -101,7 +101,7 @@ ostream& operator<<(ostream& O, const Produto& P)
 
 /// CLASSE LIVRO
 
-Livro::Livro(const string& N, int P, const string& A): Produto(N,P), autor(A) {}
+Livro::Livro(const string &N, int P, const string &A) : Produto(N, P), autor(A) {}
 
 /// Funcoes de consulta
 string Livro::getAutor() const
@@ -116,9 +116,8 @@ void Livro::digitar()
   do
   {
     cout << "Autor: ";
-    getline(cin,autor);
-  }
-  while (autor=="");
+    getline(cin, autor);
+  } while (autor == "");
 }
 
 void Livro::imprimir() const
@@ -126,7 +125,7 @@ void Livro::imprimir() const
   return salvar(cout);
 }
 
-bool Livro::ler(istream& I)
+bool Livro::ler(istream &I)
 {
   // Formato da linha no arquivo->  L: <Conteudo do Produto>;"STRING_AUTOR"
   try
@@ -134,18 +133,21 @@ bool Livro::ler(istream& I)
     // Leh o caractere inicial
     char opcao;
     I >> opcao;
-    if (!I.good() || opcao!='L') throw 1;
+    if (!I.good() || opcao != 'L')
+      throw 1;
 
     // Ignora o ":" apos a letra inicial
-    I.ignore(numeric_limits<streamsize>::max(),':');
+    I.ignore(numeric_limits<streamsize>::max(), ':');
     // Comeca da aspa da string do nome do Produto
-    if (!Produto::ler(I)) throw 2;
+    if (!Produto::ler(I))
+      throw 2;
 
     // Ignora o ";" e a aspa inicial do nome do autor
-    I.ignore(numeric_limits<streamsize>::max(),'"');
+    I.ignore(numeric_limits<streamsize>::max(), '"');
     // Leh o nome do autor
-    getline(I,autor,'"');
-    if (!I.good() || autor == "") throw 3;
+    getline(I, autor, '"');
+    if (!I.good() || autor == "")
+      throw 3;
 
     // Ignora o "\n" no fim da linha
     I.ignore();
@@ -158,7 +160,7 @@ bool Livro::ler(istream& I)
   return true;
 }
 
-void Livro::salvar(ostream& O) const
+void Livro::salvar(ostream &O) const
 {
   // Formato da linha-> L: <Conteudo do Produto>;"STRING_AUTOR"
   O << "L: ";
@@ -166,13 +168,13 @@ void Livro::salvar(ostream& O) const
   O << ';' << '"' << autor << '"';
 }
 
-istream& operator>>(istream& I, Livro& L)
+istream &operator>>(istream &I, Livro &L)
 {
   L.digitar();
   return I;
 }
 
-ostream& operator<<(ostream& O, const Livro& L)
+ostream &operator<<(ostream &O, const Livro &L)
 {
   L.salvar(O);
   return O;
@@ -180,7 +182,7 @@ ostream& operator<<(ostream& O, const Livro& L)
 
 /// CLASSE CD
 
-CD::CD(const string& N, int P, int NF): Produto(N,P), nfaixas(NF) {}
+CD::CD(const string &N, int P, int NF) : Produto(N, P), nfaixas(NF) {}
 
 /// Funcoes de consulta
 int CD::getNumFaixas() const
@@ -196,8 +198,7 @@ void CD::digitar()
   {
     cout << "Numero de faixas: ";
     cin >> nfaixas;
-  }
-  while (nfaixas <= 0);
+  } while (nfaixas <= 0);
   cin.ignore();
 }
 
@@ -206,7 +207,7 @@ void CD::imprimir() const
   salvar(cout);
 }
 
-bool CD::ler(istream& I)
+bool CD::ler(istream &I)
 {
   // Formato da linha no arquivo->  C: <Conteudo do Produto>;UNSIGNED_NFAIXAS
   try
@@ -214,18 +215,21 @@ bool CD::ler(istream& I)
     // Leh o caractere inicial
     char opcao;
     I >> opcao;
-    if (!I.good() || opcao!='C') throw 1;
+    if (!I.good() || opcao != 'C')
+      throw 1;
 
     // Ignora o ":" apos a letra inicial
-    I.ignore(numeric_limits<streamsize>::max(),':');
+    I.ignore(numeric_limits<streamsize>::max(), ':');
     // Comeca da aspa da string do nome do Produto
-    if (!Produto::ler(I)) throw 2;
+    if (!Produto::ler(I))
+      throw 2;
 
     // Ignora o ";"
-    I.ignore(numeric_limits<streamsize>::max(),';');
+    I.ignore(numeric_limits<streamsize>::max(), ';');
     // Leh o numero de faixa
     I >> nfaixas;
-    if (!I.good() || nfaixas <= 0) throw 3;
+    if (!I.good() || nfaixas <= 0)
+      throw 3;
 
     // Ignora o "\n" no fim da linha
     I.ignore();
@@ -238,7 +242,7 @@ bool CD::ler(istream& I)
   return true;
 }
 
-void CD::salvar(ostream& O) const
+void CD::salvar(ostream &O) const
 {
   // Formato da linha-> C: <Conteudo do Produto>;UNSIGNED_NFAIXAS
   O << "C: ";
@@ -246,13 +250,13 @@ void CD::salvar(ostream& O) const
   O << ';' << nfaixas;
 }
 
-istream& operator>>(istream& I, CD& C)
+istream &operator>>(istream &I, CD &C)
 {
   C.digitar();
   return I;
 }
 
-ostream& operator<<(ostream& O, const CD& C)
+ostream &operator<<(ostream &O, const CD &C)
 {
   C.salvar(O);
   return O;
@@ -260,7 +264,7 @@ ostream& operator<<(ostream& O, const CD& C)
 
 /// CLASSE DVD
 
-DVD::DVD(const string& N, int P, int D): Produto(N,P), duracao(D) {}
+DVD::DVD(const string &N, int P, int D) : Produto(N, P), duracao(D) {}
 
 /// Funcoes de consulta
 int DVD::getDuracao() const
@@ -276,8 +280,7 @@ void DVD::digitar()
   {
     cout << "Duracao: ";
     cin >> duracao;
-  }
-  while (duracao <= 0);
+  } while (duracao <= 0);
   cin.ignore();
 }
 
@@ -286,7 +289,7 @@ void DVD::imprimir() const
   salvar(cout);
 }
 
-bool DVD::ler(istream& I)
+bool DVD::ler(istream &I)
 {
   // Formato da linha no arquivo-> D: <Conteudo do Produto>;UNSIGNED_DURACAO
   try
@@ -294,18 +297,21 @@ bool DVD::ler(istream& I)
     // Leh o caractere inicial
     char opcao;
     I >> opcao;
-    if (!I.good() || opcao!='D') throw 1;
+    if (!I.good() || opcao != 'D')
+      throw 1;
 
     // Ignora o ":" apos a letra inicial
-    I.ignore(numeric_limits<streamsize>::max(),':');
+    I.ignore(numeric_limits<streamsize>::max(), ':');
     // Comeca da aspa da string do nome do Produto
-    if (!Produto::ler(I)) throw 2;
+    if (!Produto::ler(I))
+      throw 2;
 
     // Ignora o ";"
-    I.ignore(numeric_limits<streamsize>::max(),';');
+    I.ignore(numeric_limits<streamsize>::max(), ';');
     // Leh a duracao
     I >> duracao;
-    if (!I.good() || duracao <= 0) throw 3;
+    if (!I.good() || duracao <= 0)
+      throw 3;
 
     // Ignora o "\n" no fim da linha
     I.ignore();
@@ -318,7 +324,7 @@ bool DVD::ler(istream& I)
   return true;
 }
 
-void DVD::salvar(ostream& O) const
+void DVD::salvar(ostream &O) const
 {
   // Formato da linha-> D: <Conteudo do Produto>;UNSIGNED_DURACAO
   O << "D: ";
@@ -326,13 +332,13 @@ void DVD::salvar(ostream& O) const
   O << ';' << duracao;
 }
 
-istream& operator>>(istream& I, DVD& D)
+istream &operator>>(istream &I, DVD &D)
 {
   D.digitar();
   return I;
 }
 
-ostream& operator<<(ostream& O, const DVD& D)
+ostream &operator<<(ostream &O, const DVD &D)
 {
   D.salvar(O);
   return O;
@@ -341,7 +347,7 @@ ostream& operator<<(ostream& O, const DVD& D)
 /// CLASSE LOJA
 
 /// Metodos basicos
-Loja::Loja(): LL(), LC(), LD() {}
+Loja::Loja() : LL(), LC(), LD() {}
 
 /// Funcoes de consulta
 int Loja::getNumLivro() const
@@ -361,57 +367,63 @@ int Loja::getNumDVD() const
 
 Livro Loja::getLivro(int id) const
 {
-  if (LL.empty() || id<0 || id>=(int)LL.size()) return Livro();
+  if (LL.empty() || id < 0 || id >= (int)LL.size())
+    return Livro();
   return LL[id];
 }
 
 CD Loja::getCD(int id) const
 {
-  if (LC.empty() || id<0 || id>=(int)LC.size()) return CD();
+  if (LC.empty() || id < 0 || id >= (int)LC.size())
+    return CD();
   return LC[id];
 }
 
 DVD Loja::getDVD(int id) const
 {
-  if (LD.empty() || id<0 || id>=(int)LD.size()) return DVD();
+  if (LD.empty() || id < 0 || id >= (int)LD.size())
+    return DVD();
   return LD[id];
 }
 
 /// Funcoes de manipulacao (inclusao/exclusao) de itens do estoque
 
-void Loja::incluirLivro(const Livro& X)
+void Loja::incluirLivro(const Livro &X)
 {
   LL.push_back(X);
 }
 
 bool Loja::excluirLivro(int id)
 {
-  if (LL.empty() || id<0 || id>=(int)LL.size()) return false;
-  LL.erase(LL.begin()+id);
+  if (LL.empty() || id < 0 || id >= (int)LL.size())
+    return false;
+  LL.erase(LL.begin() + id);
   return true;
 }
 
-void Loja::incluirCD(const CD& X)
+void Loja::incluirCD(const CD &X)
 {
   LC.push_back(X);
 }
 
 bool Loja::excluirCD(int id)
 {
-  if (LC.empty() || id<0 || id>=(int)LC.size()) return false;
-  LC.erase(LC.begin()+id);
+  if (LC.empty() || id < 0 || id >= (int)LC.size())
+    return false;
+  LC.erase(LC.begin() + id);
   return true;
 }
 
-void Loja::incluirDVD(const DVD& X)
+void Loja::incluirDVD(const DVD &X)
 {
   LD.push_back(X);
 }
 
 bool Loja::excluirDVD(int id)
 {
-  if (LD.empty() || id<0 || id>=(int)LD.size()) return false;
-  LD.erase(LD.begin()+id);
+  if (LD.empty() || id < 0 || id >= (int)LD.size())
+    return false;
+  LD.erase(LD.begin() + id);
   return true;
 }
 
@@ -420,26 +432,30 @@ bool Loja::excluirDVD(int id)
 void Loja::imprimir() const
 {
   cout << ">> LIVROS:" << endl;
-  for (int i=0; i<(int)LL.size(); i++) cout << i << ") " << LL[i] << endl;
+  for (int i = 0; i < (int)LL.size(); i++)
+    cout << i << ") " << LL[i] << endl;
 
   cout << ">> CDS:" << endl;
-  for (int i=0; i<(int)LC.size(); i++) cout << i << ") " << LC[i] << endl;
+  for (int i = 0; i < (int)LC.size(); i++)
+    cout << i << ") " << LC[i] << endl;
 
   cout << ">> DVDS:" << endl;
-  for (int i=0; i<(int)LD.size(); i++) cout << i << ") " << LD[i] << endl;
+  for (int i = 0; i < (int)LD.size(); i++)
+    cout << i << ") " << LD[i] << endl;
 }
 
-bool Loja::ler(const string& arq)
+bool Loja::ler(const string &arq)
 {
   // A stream de leitura
   ifstream I(arq.c_str());
 
   // O resultado logico da leitura
-  bool resultado=true;
+  bool resultado = true;
 
   try
   {
-    if (!I.is_open()) throw 1;
+    if (!I.is_open())
+      throw 1;
 
     string pS;
     int NN;
@@ -449,34 +465,40 @@ bool Loja::ler(const string& arq)
 
     // Leh os livros
     I >> pS >> NN;
-    if (!I.good() || pS!="LISTALIVRO") throw 2;
+    if (!I.good() || pS != "LISTALIVRO")
+      throw 2;
     I >> ws;
     LL.clear();
-    for (int i=0; i<NN; i++)
+    for (int i = 0; i < NN; i++)
     {
-      if (!L.ler(I)) throw 3;
+      if (!L.ler(I))
+        throw 3;
       LL.push_back(L);
     }
 
     // Leh os CDs
     I >> pS >> NN;
-    if (!I.good() || pS!="LISTACD") throw 4;
+    if (!I.good() || pS != "LISTACD")
+      throw 4;
     I.ignore();
     LC.clear();
-    for (int i=0; i<NN; i++)
+    for (int i = 0; i < NN; i++)
     {
-      if (!C.ler(I)) throw 5;
+      if (!C.ler(I))
+        throw 5;
       LC.push_back(C);
     }
 
     // Leh os DVDs
     I >> pS >> NN;
-    if (!I.good() || pS!="LISTADVD") throw 6;
+    if (!I.good() || pS != "LISTADVD")
+      throw 6;
     I.ignore();
     LD.clear();
-    for (int i=0; i<NN; i++)
+    for (int i = 0; i < NN; i++)
     {
-      if (!D.ler(I)) throw 7;
+      if (!D.ler(I))
+        throw 7;
       LD.push_back(D);
     }
   }
@@ -487,23 +509,28 @@ bool Loja::ler(const string& arq)
     LD.clear();
     resultado = false;
   }
-  if (I.is_open()) I.close();
+  if (I.is_open())
+    I.close();
   return resultado;
 }
 
-bool Loja::salvar(const string& arq) const
+bool Loja::salvar(const string &arq) const
 {
   ofstream O(arq.c_str());
-  if (!O.is_open()) return false;
+  if (!O.is_open())
+    return false;
 
   O << "LISTALIVRO " << LL.size() << endl;
-  for (int i=0; i<(int)LL.size(); i++) O << LL[i] << endl;
+  for (int i = 0; i < (int)LL.size(); i++)
+    O << LL[i] << endl;
 
   O << "LISTACD " << LC.size() << endl;
-  for (int i=0; i<(int)LC.size(); i++) O << LC[i] << endl;
+  for (int i = 0; i < (int)LC.size(); i++)
+    O << LC[i] << endl;
 
   O << "LISTADVD " << LD.size() << endl;
-  for (int i=0; i<(int)LD.size(); i++) O << LD[i] << endl;
+  for (int i = 0; i < (int)LD.size(); i++)
+    O << LD[i] << endl;
 
   O.close();
   return true;

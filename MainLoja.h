@@ -8,8 +8,9 @@
 #include "qlabel.h"
 #include <QMainWindow>
 
-namespace Ui {
-class MainLoja;
+namespace Ui
+{
+  class MainLoja;
 }
 
 class MainLoja : public QMainWindow
@@ -19,11 +20,11 @@ class MainLoja : public QMainWindow
 public:
   explicit MainLoja(QWidget *parent = 0);
   ~MainLoja();
-   void preencher_Livros();
-   void preencher_CDS();
-   void preencher_DVDS();
-   void preencher_Listas();
-   void update_n_itens();
+  void preencher_Livros();
+  void preencher_CDS();
+  void preencher_DVDS();
+  void preencher_Listas();
+  void update_n_itens();
 private slots:
 
   void on_actionSair_triggered();
@@ -51,10 +52,10 @@ private slots:
 private:
   Ui::MainLoja *ui;
   Loja X;
-  IncluirLivro* inclLivro;
-  IncluirCD* inclCD;
-  IncluirDVD* inclDVD;
-  QLabel* total_itens;
+  IncluirLivro *inclLivro;
+  IncluirCD *inclCD;
+  IncluirDVD *inclDVD;
+  QLabel *total_itens;
 };
 
 #endif // MainLoja_H

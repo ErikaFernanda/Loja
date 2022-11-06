@@ -3,8 +3,9 @@
 
 #include <QDialog>
 
-namespace Ui {
-class IncluirDVD;
+namespace Ui
+{
+    class IncluirDVD;
 }
 
 class IncluirDVD : public QDialog

@@ -3,8 +3,9 @@
 
 #include <QDialog>
 
-namespace Ui {
-class IncluirCD;
+namespace Ui
+{
+    class IncluirCD;
 }
 
 class IncluirCD : public QDialog
