@@ -8,8 +8,12 @@
 #include "incluirlivro.h"
 
 MainLoja::MainLoja(QWidget *parent) :
-  QMainWindow(parent),
-  ui(new Ui::MainLoja)
+    QMainWindow(parent),
+    ui(new Ui::MainLoja),
+    inclLivro(nullptr),
+    inclCD(nullptr),
+    inclDVD(nullptr),
+    total_itens(new QLabel)
 {
   ui->setupUi(this);
   inclLivro = new IncluirLivro();
